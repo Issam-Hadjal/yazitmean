@@ -8,9 +8,18 @@
     "node": ">=26 <27"
   },
   "scripts": {
+    "dev": "pnpm --parallel --filter ./apps/web-public --filter ./apps/web-private run dev",
+    "dev:public": "pnpm --dir apps/web-public dev",
+    "dev:private": "pnpm --dir apps/web-private dev",
+    "build": "pnpm --filter ./apps/web-public --filter ./apps/web-private run build",
+    "build:public": "pnpm --dir apps/web-public build",
+    "build:private": "pnpm --dir apps/web-private build",
+    "preview:public": "pnpm --dir apps/web-public preview",
+    "preview:private": "pnpm --dir apps/web-private preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "check": "pnpm run lint && pnpm run format:check && pnpm run build && pnpm peers check"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
