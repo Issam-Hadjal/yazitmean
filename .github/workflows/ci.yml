@@ -3,14 +3,14 @@ name: CI
 on:
   push:
     branches:
-      - main
-      - develop
+      - dev
       - staging
+      - prod
   pull_request:
     branches:
-      - main
-      - develop
+      - dev
       - staging
+      - prod
 
 permissions:
   contents: read

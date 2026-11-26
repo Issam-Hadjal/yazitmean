@@ -25,7 +25,7 @@ Environnement dédié au développement et aux tests.
 
 ### Configuration
 
-- Git branch : `develop`
+- Git branch : `dev`
 - Feature branches : `feature/*`
 - Frontend : Vite en local
 - Backend : FastAPI en local
@@ -42,11 +42,11 @@ Environnement dédié au développement et aux tests.
 
 ### Development Workflow
 
-1. Créer une branche feature depuis develop.
+1. Créer une branche feature depuis dev.
 2. Développer une fonctionnalité.
 3. Exécuter les tests.
 4. Créer un commit atomique.
-5. Ouvrir une Pull Request vers develop.
+5. Ouvrir une Pull Request vers dev.
 6. Fusionner après validation.
 
 ## 3. PREPROD — Preproduction
@@ -93,7 +93,7 @@ Environnement stable accessible aux utilisateurs autorisés.
 
 ### Configuration dans PROD
 
-- Git branch : `main`
+- Git branch : `prod`
 - Hosting : Vercel Production
 - Database : Neon PROD
 - Auth : Better Auth PROD
@@ -132,9 +132,9 @@ Il est interdit de :
 
 Branches principales :
 
-- `develop` : DEV
+- `dev` : DEV
 - `staging` : PREPROD
-- `main` : PROD
+- `prod` : PROD
 
 Branches temporaires :
 
@@ -143,7 +143,7 @@ Branches temporaires :
 
 Promotion :
 
-feature/\* -> develop -> staging -> main
+feature/\* -> dev -> staging -> prod
 
 Chaque promotion doit être validée avant la suivante.
 
@@ -162,7 +162,7 @@ Les projets utilisent des configurations distinctes selon l'environnement.
 
 Les déploiements PREPROD sont associés à staging.
 
-Les déploiements PROD sont associés à main.
+Les déploiements PROD sont associés à prod.
 
 Les déploiements de feature branches sont considérés comme non fiables pour l'accès aux données privées.
 

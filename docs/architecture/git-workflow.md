@@ -16,13 +16,13 @@ Principes fondamentaux :
 
 ## 2. Branching Strategy
 
-### Main Branches
+### Prod Branches
 
 | Branch    | Environment | Purpose                         |
 | --------- | ----------- | ------------------------------- |
-| `develop` | DEV         | Intégration des fonctionnalités |
+| `dev`     | DEV         | Intégration des fonctionnalités |
 | `staging` | PREPROD     | Validation avant production     |
-| `main`    | PROD        | Version stable                  |
+| `prod`    | PROD        | Version stable                  |
 
 ### Temporary Branches
 
@@ -40,17 +40,17 @@ Exemples :
 - `fix/media-access`
 - `docs/api-documentation`
 
-Les branches temporaires sont généralement créées depuis `develop`.
+Les branches temporaires sont généralement créées depuis `dev`.
 
 ## 3. Initial Repository Setup
 
-Le dépôt est initialisé sur `main`.
+Le dépôt est initialisé sur `prod`.
 
 Le premier commit contient uniquement la documentation fondatrice :
 
 `docs(architecture): define system architecture`
 
-La mise en place du monorepo, puis la création de `develop` et `staging`, seront effectuées lors des étapes prévues du projet.
+La mise en place du monorepo, puis la création de `dev` et `staging`, seront effectuées lors des étapes prévues du projet.
 
 Aucun environnement de production contenant des données personnelles ne sera activé à cette étape.
 
@@ -109,7 +109,7 @@ Les modifications indépendantes ne doivent pas être regroupées artificielleme
 
 Pour une nouvelle fonctionnalité :
 
-1. Se placer sur `develop`.
+1. Se placer sur `dev`.
 2. Mettre à jour la branche locale.
 3. Créer une branche `feature/*`.
 4. Développer une modification cohérente.
@@ -117,7 +117,7 @@ Pour une nouvelle fonctionnalité :
 6. Examiner les modifications.
 7. Créer un commit atomique.
 8. Pousser la branche sur GitHub.
-9. Ouvrir une Pull Request vers `develop`.
+9. Ouvrir une Pull Request vers `dev`.
 10. Valider puis fusionner la Pull Request.
 
 Les commits atomiques doivent être préservés lors de la fusion.
@@ -179,7 +179,7 @@ Les contrôles CI doivent réussir avant la fusion.
 
 Le code suit le parcours :
 
-`feature/* -> develop -> staging -> main`
+`feature/* -> dev -> staging -> prod`
 
 ### DEV
 
@@ -206,7 +206,7 @@ Une promotion de code ne doit jamais copier les données entre environnements.
 
 ## 10. Branch Protection
 
-Les branches `main` et `staging` doivent être protégées.
+Les branches `prod` et `staging` doivent être protégées.
 
 Protections prévues :
 
