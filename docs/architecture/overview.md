@@ -224,9 +224,9 @@ Les observations doivent pouvoir être reliées aux messages d'origine.
 
 Trois environnements indépendants :
 
-- DEV : branche `develop`.
+- DEV : branche `dev`.
 - PREPROD : branche `staging`.
-- PROD : branche `main`.
+- PROD : branche `prod`.
 
 Chaque environnement possède :
 

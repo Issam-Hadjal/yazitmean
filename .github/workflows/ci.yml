@@ -3,14 +3,14 @@ name: CI
 on:
   push:
     branches:
-      - main
-      - develop
+      - dev
       - staging
+      - prod
   pull_request:
     branches:
-      - main
-      - develop
+      - dev
       - staging
+      - prod
 
 permissions:
   contents: read
@@ -35,6 +35,9 @@ jobs:
 
       - name: Check formatting
         run: pnpm run format:check
+
+      - name: Build applications
+        run: pnpm run build
 
       - name: Check peer dependencies
         run: pnpm peers check
