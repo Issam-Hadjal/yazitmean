@@ -36,5 +36,8 @@ jobs:
       - name: Check formatting
         run: pnpm run format:check
 
+      - name: Build applications
+        run: pnpm run build
+
       - name: Check peer dependencies
         run: pnpm peers check
