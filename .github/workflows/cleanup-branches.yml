@@ -1,0 +1,69 @@
+name: Cleanup Merged Branches
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - dev
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    name: Delete merged temporary branch
+    if: >-
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Delete branch safely
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const branch = context.payload.pull_request.head.ref;
+            const mergedSha = context.payload.pull_request.head.sha;
+            const { owner, repo } = context.repo;
+
+            const allowed = /^(feature|fix|chore|ci|docs)\/.+$/.test(branch);
+
+            if (!allowed) {
+              core.info(`Branch "${branch}" is not temporary. Skipping.`);
+              return;
+            }
+
+            const ref = `heads/${branch}`;
+
+            let current;
+
+            try {
+              current = await github.rest.git.getRef({
+                owner,
+                repo,
+                ref,
+              });
+            } catch (error) {
+              if (error.status === 404) {
+                core.info(`Branch "${branch}" is already deleted.`);
+                return;
+              }
+
+              throw error;
+            }
+
+            if (current.data.object.sha !== mergedSha) {
+              core.warning(
+                `Branch "${branch}" changed after the merge. Skipping deletion.`
+              );
+              return;
+            }
+
+            await github.rest.git.deleteRef({
+              owner,
+              repo,
+              ref,
+            });
+
+            core.info(`Successfully deleted branch "${branch}".`);
