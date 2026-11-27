@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from '@workspace/ui/components/card';
 import { Wordmark } from '@workspace/ui/components/wordmark';
+import { EnvironmentBadge } from '@workspace/ui/components/environment-badge';
 
 const navigation = [
   { id: 'overview', label: "Vue d'ensemble" },
@@ -114,7 +115,10 @@ export default function App() {
               </p>
             </div>
 
-            <Badge variant="outline">Données fictives</Badge>
+            <div className="flex items-center gap-2">
+              <EnvironmentBadge environment={import.meta.env.VITE_APP_ENV} />
+              <Badge variant="outline">Données fictives</Badge>
+            </div>
           </div>
 
           {/* Mobile navigation */}
