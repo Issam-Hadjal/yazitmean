@@ -2,6 +2,7 @@ import { Badge } from '@workspace/ui/components/badge';
 import { Button } from '@workspace/ui/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@workspace/ui/components/card';
 import { Wordmark } from '@workspace/ui/components/wordmark';
+import { EnvironmentBadge } from '@workspace/ui/components/environment-badge';
 
 const features = [
   {
@@ -119,7 +120,10 @@ export default function App() {
       </main>
 
       <footer className="border-t border-border/60 px-6 py-8 text-center text-sm text-muted-foreground">
-        YazItMean — Beyond messages. Discover meaning.
+        <span>YazItMean — Beyond messages. Discover meaning.</span>
+        <span className="ml-3 inline-flex align-middle">
+          <EnvironmentBadge environment={import.meta.env.VITE_APP_ENV} />
+        </span>
       </footer>
     </div>
   );
